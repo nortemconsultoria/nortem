@@ -393,6 +393,42 @@
     gtag('js', new Date());
     gtag('config', 'G-3WTZNCE1JY');
   </script>
+  <script>
+    document.addEventListener('click', function (event) {
+      var link = event.target.closest && event.target.closest('a');
+      if (!link || !link.href) return;
+      var href = link.href;
+      var eventName, method;
+      if (/wa\.me\/|whatsapp\.com/i.test(href)) {
+        eventName = 'contato_whatsapp';
+        method = 'whatsapp';
+      } else if (/^mailto:/i.test(href)) {
+        eventName = 'contato_email';
+        method = 'email';
+      } else if (/linkedin\.com/i.test(href)) {
+        eventName = 'contato_linkedin';
+        method = 'linkedin';
+      } else {
+        return;
+      }
+      var location = 'unknown';
+      var el = link;
+      while (el && el !== document.body && el !== document.documentElement) {
+        var tag = el.tagName && el.tagName.toLowerCase();
+        if (tag === 'nav') { location = 'nav'; break; }
+        if (tag === 'footer') { location = 'footer'; break; }
+        if (el.id) { location = el.id; break; }
+        el = el.parentElement;
+      }
+      if (typeof gtag === 'function') {
+        gtag('event', eventName, {
+          link_url: href,
+          link_location: location,
+          method: method
+        });
+      }
+    });
+  </script>
   <link rel="icon" type="image/png" href="img/favicon.png" />
   <link rel="apple-touch-icon" href="img/apple-touch-icon.png" />
 </head>
