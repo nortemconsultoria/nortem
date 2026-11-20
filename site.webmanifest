@@ -1,0 +1,11 @@
+{
+  "name": "Nortem Consultoria",
+  "short_name": "Nortem",
+  "icons": [
+    { "src": "/icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any maskable" },
+    { "src": "/icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any maskable" }
+  ],
+  "theme_color": "#0F1924",
+  "background_color": "#0F1924",
+  "display": "standalone"
+}
